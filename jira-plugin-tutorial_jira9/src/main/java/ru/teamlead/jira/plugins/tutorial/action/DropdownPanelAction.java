@@ -1,8 +1,8 @@
 package ru.teamlead.jira.plugins.tutorial.action;
 
 
-import ru.teamlead.jira.plugins.tutorial.ao.DropdownOptionService;
 import com.atlassian.jira.web.action.JiraWebActionSupport;
+import ru.teamlead.jira.plugins.tutorial.ao.DropdownOptionService;
 
 import java.util.Collections;
 import java.util.List;
