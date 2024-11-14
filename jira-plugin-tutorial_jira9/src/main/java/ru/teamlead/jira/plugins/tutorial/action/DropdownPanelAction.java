@@ -4,6 +4,7 @@ package ru.teamlead.jira.plugins.tutorial.action;
 import ru.teamlead.jira.plugins.tutorial.ao.DropdownOptionService;
 import com.atlassian.jira.web.action.JiraWebActionSupport;
 
+import java.util.Collections;
 import java.util.List;
 
 public class DropdownPanelAction extends JiraWebActionSupport {
@@ -22,6 +23,6 @@ public class DropdownPanelAction extends JiraWebActionSupport {
     }
 
     public List<String> getOptions() {
-        return options;
+        return options != null ? options : Collections.emptyList();
     }
 }

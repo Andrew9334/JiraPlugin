@@ -1,24 +1,26 @@
-<aui:form>
-    <aui:select id="dropdown" name="dropdown">
-        #foreach($option in $options)
-            <aui:option value="$option" label="$option"/>
-        #end
-    </aui:select>
-</aui:form>
+#if ($options.isEmpty())
+<p>Нет доступных опций</p>
+#else
+<aui:select id="dropdown" name="dropdown">
+    #foreach($option in $options)
+        <aui:option value="$option" label="$option"/>
+    #end
+</aui:select>
+#end
 
 <aui:dialog id="my-dialog" width="600" height="400" title="Custom Dialog" class="aui-dialog2">
     <div class="aui-message-inner">
         <h2>Выберите опцию</h2>
         <p>Выберите из списка опцию, чтобы продолжить:</p>
 
-        <aui:select id="dropdown" name="dropdown">
+        <aui:select id="dropdown" name="dropdown-dialog">
             #foreach($option in $options)
                 <aui:option value="$option" label="$option"/>
             #end
         </aui:select>
 
         <p>Введите дополнительные данные:</p>
-        <aui:textfield id="custom-field" label="Ваш текст" />
+        <aui:textfield id="custom-field" laыщьуbel="Ваш текст" />
 
     </div>
     <aui:button-group>
