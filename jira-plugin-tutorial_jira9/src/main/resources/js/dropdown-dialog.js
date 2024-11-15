@@ -1,5 +1,5 @@
 AJS.$(document).ready(function() {
-    AJS.$('#open-dialog-btn').click(function() {
+    AJS.$('#add-option-btn').click(function() {
         AJS.dialog2('#my-dialog').show();
     });
 
@@ -8,19 +8,45 @@ AJS.$(document).ready(function() {
     });
 
     AJS.$('#save-btn').click(function() {
-        var selectedOption = AJS.$('#dropdown').val();
-        var customText = AJS.$('#custom-field').val();
+        var customText = AJS.$('#custom-field-name').val();
 
-        if (!selectedOption || !customText) {
-            alert("Пожалуйста, выберите опцию и заполните текстовое поле.");
+        if (!customText) {
+            alert("Пожалуйста, заполните текстовое поле.");
             return;
         }
 
-        AJS.messages.success({
-            message: 'Данные успешно сохранены!',
-            closeable: true
-        });
+        AJS.$.ajax({
+            url: AJS.contextPath() + "/secure/admin/tutorial/saveOption",  // Убедитесь, что URL правильный
+            type: 'POST',
+            data: {
+                option: customText
+            },
+            success: function(response) {
+                // Если опция добавлена успешно, показываем сообщение
+                AJS.messages.success({
+                    message: 'Опция успешно добавлена!',
+                    closeable: true
+                });
 
-        AJS.dialog2('#my-dialog').hide();
+                var dropdown = AJS.$('#dropdown');
+                if (dropdown.length > 0) {
+                    var existingOptions = dropdown.find('option').map(function() {
+                        return AJS.$(this).val();
+                    }).get();
+
+                    if (existingOptions.indexOf(customText) === -1) {
+                        dropdown.append('<option value="' + customText + '">' + customText + '</option>');
+                    } else {
+                        alert("Эта опция уже существует в списке.");
+                    }
+                }
+
+                AJS.dialog2('#my-dialog').hide();
+            },
+            error: function(xhr, status, error) {
+                console.error('Ошибка при добавлении опции:', error);
+                alert("Ошибка при сохранении опции.");
+            }
+        });
     });
 });

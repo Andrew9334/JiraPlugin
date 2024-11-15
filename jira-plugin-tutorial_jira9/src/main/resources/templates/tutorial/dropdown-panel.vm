@@ -1,3 +1,6 @@
+<aui:button id="add-option-btn" class="aui-button aui-button-primary"
+            name="add-option" value="Добавить опцию" />
+
 #if ($options.isEmpty())
 <p>Нет доступных опций</p>
 #else
@@ -10,24 +13,27 @@
 
 <aui:dialog id="my-dialog" width="600" height="400" title="Custom Dialog" class="aui-dialog2">
     <div class="aui-message-inner">
-        <h2>Выберите опцию</h2>
-        <p>Выберите из списка опцию, чтобы продолжить:</p>
+        <h2>Введите новую опцию</h2>
+        <p>Введите название новой опции:</p>
 
-        <aui:select id="dropdown" name="dropdown-dialog">
+        <aui:textfield id="custom-field-name" label="Новая опция" name="optionName" />
+
+        <p>Выберите опцию из выпадающего списка:</p>
+        <aui:select id="dropdown-dialog" name="dropdown-dialog">
             #foreach($option in $options)
                 <aui:option value="$option" label="$option"/>
             #end
         </aui:select>
 
         <p>Введите дополнительные данные:</p>
-        <aui:textfield id="custom-field" laыщьуbel="Ваш текст" />
+        <aui:textfield id="custom-field-additional" label="Ваш текст" name="additionalText" />
 
     </div>
+
     <aui:button-group>
         <aui:button id="save-btn" name="save" value="Сохранить" />
         <aui:button id="cancel-btn" name="cancel" value="Отмена" class="cancel" />
     </aui:button-group>
 </aui:dialog>
-
 
 <script type="text/javascript" src="$webResourceManager.getResourceUrl('ru.teamlead.jira.plugins.tutorial', 'dropdown-dialog-resources')"></script>
