@@ -27,7 +27,6 @@
 
         <p>Введите дополнительные данные:</p>
         <aui:textfield id="custom-field-additional" label="Ваш текст" name="additionalText" />
-
     </div>
 
     <aui:button-group>

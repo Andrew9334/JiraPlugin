@@ -13,7 +13,6 @@ public class DropdownPanelAction extends JiraWebActionSupport {
     private List<String> options;
     private String option;
 
-
     public DropdownPanelAction(DropdownOptionService dropdownOptionService) {
         this.dropdownOptionService = dropdownOptionService;
     }

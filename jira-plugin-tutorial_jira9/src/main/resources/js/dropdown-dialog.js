@@ -1,13 +1,13 @@
-AJS.$(document).ready(function() {
-    AJS.$('#add-option-btn').click(function() {
+AJS.$(document).ready(function () {
+    AJS.$('#add-option-btn').click(function () {
         AJS.dialog2('#my-dialog').show();
     });
 
-    AJS.$('#cancel-btn').click(function() {
+    AJS.$('#cancel-btn').click(function () {
         AJS.dialog2('#my-dialog').hide();
     });
 
-    AJS.$('#save-btn').click(function() {
+    AJS.$('#save-btn').click(function () {
         var customText = AJS.$('#custom-field-name').val();
 
         if (!customText) {
@@ -21,7 +21,7 @@ AJS.$(document).ready(function() {
             data: {
                 option: customText
             },
-            success: function(response) {
+            success: function (response) {
                 // Если опция добавлена успешно, показываем сообщение
                 AJS.messages.success({
                     message: 'Опция успешно добавлена!',
@@ -30,7 +30,7 @@ AJS.$(document).ready(function() {
 
                 var dropdown = AJS.$('#dropdown');
                 if (dropdown.length > 0) {
-                    var existingOptions = dropdown.find('option').map(function() {
+                    var existingOptions = dropdown.find('option').map(function () {
                         return AJS.$(this).val();
                     }).get();
 
@@ -40,10 +40,9 @@ AJS.$(document).ready(function() {
                         alert("Эта опция уже существует в списке.");
                     }
                 }
-
                 AJS.dialog2('#my-dialog').hide();
             },
-            error: function(xhr, status, error) {
+            error: function (xhr, status, error) {
                 console.error('Ошибка при добавлении опции:', error);
                 alert("Ошибка при сохранении опции.");
             }
